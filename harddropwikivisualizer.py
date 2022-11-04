@@ -81,7 +81,7 @@ def makeboard():
 seperateframe = False
 
 def outputcode():
-    boardnumber = ["0" for i in range(70)]
+    boardnumber = ["0" for i in range(blocksx * blocksy)]
     for i in filledpieces:
         boardnumber[i[0] + i[1] * 10] = "1"
     boardnumber = int(''.join(boardnumber), 2)
