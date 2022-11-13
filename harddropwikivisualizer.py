@@ -2,10 +2,6 @@ import pygame
 import os
 import pyperclip
 
-pygame.init()
-s = pygame.display.set_mode((600, 800))
-s.fill((20, 20, 20))
-
 running = True
 
 startx = 150
@@ -15,13 +11,15 @@ blocksy = 7
 blocksize = 32
 blockwidth = 2
 
+pygame.init()
+s = pygame.display.set_mode((blocksx * blocksize + 10 * blocksize, blocksy * blocksize + 18 * blocksize))
+s.fill((20, 20, 20))
+
 def grid(startx, starty, blocksx, blocksy, blocksize, blockwidth):
     for i in range(startx, startx + (blocksx * blocksize), blocksize):
         for j in range(starty, starty + (blocksy * blocksize), blocksize):
             rect = pygame.Rect(i, j, blocksize, blocksize)
             pygame.draw.rect(s, (255, 255, 255), rect, blockwidth)
-
-
 
 cpx = 0
 cpy = 0
@@ -81,11 +79,6 @@ def makeboard():
 seperateframe = False
 
 def outputcode():
-    boardnumber = ["0" for i in range(blocksx * blocksy)]
-    for i in filledpieces:
-        boardnumber[i[0] + i[1] * 10] = "1"
-    boardnumber = int(''.join(boardnumber), 2)
-    print(boardnumber)
     global board
     tempboard = ""
     tempboard += "{|\n|{{pfstart}}\n" if seperateframe else "|{{pfstart}}\n"
